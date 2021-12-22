@@ -9,12 +9,14 @@ _INT	{DIGITO}+
 LETRA   [A-Za-z_]
 
 WS      [ \t\n]
-
+ALL     [.*]
+ASIMPLES     '
+ADUPLAS     \"
 _FLOAT	{_INT}("."{_INT})?([Ee]("+"|"-")?{_INT})?
 LINHA   [^\n]*
 
-_ID     ({LETRA}|"$")+({LETRA}|{DIGITO}|"$")*
-_STRING ["]{_ID}+({WS}?)+({_ID}?)["]
+_ID     ["/"]?({LETRA}|"$")+({LETRA}|{DIGITO}|"$")*
+_STRING		({ADUPLAS})([^\"\n]|\\\"|\"\")*({ADUPLAS})
 %%
 
 {WS}    { /* ignora espaço */ } 
